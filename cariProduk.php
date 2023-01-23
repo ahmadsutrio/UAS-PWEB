@@ -1,7 +1,18 @@
 <?php
-    include('crudProduk.php');
+    session_start();
+    include 'crudProduk.php';
+    require_once 'koneksi.php';
+    $koneksi = koneksiProduk();
     $nama = $_POST['nama_produk'];
     $hasil = cariProduk($nama);
+    
+    if($hasil==null){
+        echo "<br><br><br><br><br><br>
+                    <h3 style='margin_top:50px; text-align:center;color:red; font-size:20px;'>Maaf Yang anda cari tidak tersedia</h3>
+                    ";
+
+        
+    }
 
     $sql = "SELECT * FROM tb_produk";
     $hasilTotal = tampilSemuaProduk($sql);
@@ -30,29 +41,60 @@
 <body>
     <div class="container-fluid">
         <!-- <navbar> -->
-        <nav>
-            <div class="cont-nav">
-                <form action="" method="Post">
-                    <a href="index.php" class="logo"><h2>Freshly Dropped</h2></a>
-                    <ul class="menu">
-                        <li><input type="teks" name="nama_produk" autocomplete="0ff"></li>
-                        <li><button type="submit"><span class="material-symbols-outlined">
-                            search
-                            </span></button>
-                        </li>
-                        <li>
-                           <a href=""> <span class="material-symbols-outlined card-shop">
-                            shopping_cart
-                            </span></a>
-                        </li>
-                        <li>
-                            <a href="" class="daftar">Daftar</a>
-                            <a href="" class="masuk">Masuk</a>
-                        </li>
-                    </ul>
-                </form>
-            </div>
-        </nav>
+        <?php
+            if(isset($_SESSION['username'])){
+                $aa = $_SESSION['username'];
+                    echo "<nav>
+                        <div class='cont-nav'>
+                            <form action='cariProduk.php' method='post'>
+                                <a href='index.php' class='logo'><h2>Freshly Dropped</h2></a>
+                                <ul class='menu'>
+                                    <li><input type='teks' name='nama_produk' autocomplete='0ff'></li>
+                                    <li><button type='submit'><span class='material-symbols-outlined'>
+                                        search
+                                        </span></button>
+                                    </li>
+                                    <li>
+                                    <a href='cardKeranjang.php'> <span class='material-symbols-outlined card-shop'>
+                                        shopping_cart
+                                        </span></a>
+                                    </li>
+                                    <li class='img-profile'>
+                                    <img src='Images/Beras.png' alt=''>
+                                    </li>
+                                    <li>
+                                        <h3>$aa</h3>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                    </nav>";
+                }else{
+                    echo "<nav>
+                            <div class='cont-nav'>
+                                <form action='cariProduk.php' method='post'>
+                                    <a href='index.php' class='logo'><h2>Freshly Dropped</h2></a>
+                                    <ul class='menu'>
+                                        <li><input type='teks' name='nama_produk' autocomplete='0ff'></li>
+                                        <li><button type='submit'><span class='material-symbols-outlined'>
+                                            search
+                                            </span></button>
+                                        </li>
+                                        <li>
+                                        <a href='cardKeranjang.php'> <span class='material-symbols-outlined card-shop'>
+                                            shopping_cart
+                                            </span></a>
+                                        </li>
+                                        <li>
+                                            <a href='register.php' class='daftar'>Daftar</a>
+                                            <a href='login.php' class='masuk'>Masuk</a>
+                                        </li>
+                                    </ul>
+                                </form>
+                            </div>
+                        </nav>";
+                }
+        ?>
 
         <div class="container-fluid">
             
@@ -66,7 +108,7 @@
                             <a href="card-buy.php?nama_produk=<?php echo $nama?>" class="container-card">
                                 <img src='<?php echo $location ?><?php echo $row['gambar_produk']?>' alt=''>
                                 <p><?php echo $row['nama_produk'] ?></p>
-                                <h3 class="harga"><?php echo $row['harga_produk'] ?></h3>
+                                <h3 class="harga"><?php echo number_format($row['harga_produk']) ?></h3>
                                 <p class="tmpt"><?php echo $row['satuan_produk'] ?> gram</p>
                             </a>
 
@@ -84,7 +126,7 @@
                                 <a href="card-buy.php?nama_produk=<?php echo $nama?>" class="container-card">
                                     <img src='<?php echo $location ?><?php echo $rows['gambar_produk']?>' alt=''>
                                     <p><?php echo $rows['nama_produk'] ?></p>
-                                    <h3 class="harga"><?php echo $rows['harga_produk'] ?></h3>
+                                    <h3 class="harga">Rp. <?php echo number_format($rows['harga_produk']) ?></h3>
                                     <p class="tmpt"><?php echo $rows['satuan_produk'] ?> gram</p>
                                 </a>
 

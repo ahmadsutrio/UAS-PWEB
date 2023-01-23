@@ -11,6 +11,14 @@
 .container-fluid{
     width: 100%;
 }
+.container-fluid nav .cont-nav form .menu .img-profile{
+    margin: 0 10px 0 50px;
+}
+.container-fluid nav .cont-nav form .menu .img-profile img{
+    display: block;
+    width: 56px;
+    border-radius: 50px;
+}
 .cont-nav,
 .card-buy{
     margin:0 auto;
@@ -377,10 +385,6 @@ footer .saran form button{
     color: #70BC3A;
     text-align: center;
 }
-.card-buy .desc .container-btn .btn-keranjang button{
-    border: none;
-    color: #70BC3A;
-}
 .card-buy .desc .container-btn .btn-beli{
     width: 200px;
     display: block;
@@ -443,6 +447,7 @@ footer .saran form button{
 }
 .container-keranjang form table .hasil-total{
     background: #D9D9D9;
+    border-radius: 10px;
     color: rgba(203, 61, 61, 1);
 }
 .container-keranjang form table .hasil-total h3{
@@ -482,3 +487,56 @@ footer .saran form button{
     background: #70BC3A;
     border-radius: 5px;
 }
+
+/* register */
+.container-form{
+    width: 780px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    padding: 30px 40px;
+    margin: 105px auto;
+    
+}
+.container-form h3{
+    margin-bottom: 50px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 35px;
+}
+.container-form form table{
+    margin: 0 auto;
+    width: 600px;
+}
+.container-form form table tr td{
+    padding: 10px;
+}
+.container-form form table tr td button,
+.container-form form table tr td a{
+    display: inline-block;
+    margin-top: 60px;
+    background: #EAF5E1;
+    border: 1px solid #70BC3A;
+    border-radius: 5px;
+    padding: 8px 30px;
+    color: #70BC3A
+}
+.container-form form table tr td button{
+    border: none;
+    margin-left: 70px;
+    color: white;
+    cursor: pointer;
+    padding: 10px 30px;
+    background: #70BC3A;
+    border: 1px solid #70BC3A;
+}
+.container-form form table tr td label{
+    font-size: 20px;
+}
+.container-form form table tr td input{
+    padding: 5px;
+    font-size: 18px;
+}
+.btn-hps-tmbh{
+    padding-left: 60px;
+}
+

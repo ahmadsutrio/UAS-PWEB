@@ -1,19 +1,29 @@
 <?php
+    include('sesion.php');
     session_start();
-    include('crudProduk.php');
-    $nama = $_GET['nama_produk'];
-    $gambar = $_GET['gambar_produk'];
-    $harga = $_GET['harga_produk'];
+    include 'crudProduk.php';
+    require_once 'koneksi.php';
     $location = "Images/Images Produk/";
-    $hasil1 = tambah($nama,$gambar,$harga);
-    $sql   = "SELECT * FROM tb_order";
+    $koneksi = koneksiProduk();
+
+
+    if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    }
     
-    $hasil = tampilSemuaProduk($sql);
 
-
-   
-
-    
+    if(!isset($_GET['nama_produk'])){
+        $sql   = "SELECT * FROM tb_order";
+        $hasil = tampilSemuaProduk($sql);
+    }else{
+        $nama = $_GET['nama_produk'];
+        $gambar = $_GET['gambar_produk'];
+        $harga = $_GET['harga_produk'];
+        
+        $hasil1 = tambah($nama,$gambar,$harga);
+        $sql   = "SELECT * FROM tb_order";
+        $hasil = tampilSemuaProduk($sql);
+    }
 
 ?>
 
@@ -36,34 +46,65 @@
     <div class="container-fluid">
 
         <!-- navbar -->
-        <nav>
-            <div class="cont-nav">
-                <form action="">
-                    <a href="index.php" class="logo"><h2>Freshly Dropped</h2></a>
-                    <ul class="menu">
-                        <li><input type="teks"  autocomplete="0ff"></li>
-                        <li><button type="submit"><span class="material-symbols-outlined">
-                            search
-                            </span></button>
-                        </li>
-                        <li>
-                           <!-- <a href=""> <span class="material-symbols-outlined card-shop">
-                            shopping_cart
-                            </span></a> -->
-                        </li>
-                        <li>
-                            <a href="" class="daftar">Daftar</a>
-                            <a href="" class="masuk">Masuk</a>
-                        </li>
-                    </ul>
-                </form>
-            </div>
-        </nav>
+        <?php
+            if(isset($_SESSION['username'])){
+                $aa = $_SESSION['username'];
+                    echo "<nav>
+                        <div class='cont-nav'>
+                            <form action='cariProduk.php' method='post'>
+                                <a href='index.php' class='logo'><h2>Freshly Dropped</h2></a>
+                                <ul class='menu'>
+                                    <li><input type='teks' name='nama_produk' autocomplete='0ff'></li>
+                                    <li><button type='submit'><span class='material-symbols-outlined'>
+                                        search
+                                        </span></button>
+                                    </li>
+                                    <li>
+                                    <a href='cardKeranjang.php'> <span class='material-symbols-outlined card-shop'>
+                                        shopping_cart
+                                        </span></a>
+                                    </li>
+                                    <li class='img-profile'>
+                                    <img src='Images/Beras.png' alt=''>
+                                    </li>
+                                    <li>
+                                        <h3>$aa</h3>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                    </nav>";
+                }else{
+                    echo "<nav>
+                            <div class='cont-nav'>
+                                <form action='cariProduk.php' method='post'>
+                                    <a href='index.php' class='logo'><h2>Freshly Dropped</h2></a>
+                                    <ul class='menu'>
+                                        <li><input type='teks' name='nama_produk' autocomplete='0ff'></li>
+                                        <li><button type='submit'><span class='material-symbols-outlined'>
+                                            search
+                                            </span></button>
+                                        </li>
+                                        <li>
+                                        <a href='cardKeranjang.php'> <span class='material-symbols-outlined card-shop'>
+                                            shopping_cart
+                                            </span></a>
+                                        </li>
+                                        <li>
+                                            <a href='register.php' class='daftar'>Daftar</a>
+                                            <a href='login.php' class='masuk'>Masuk</a>
+                                        </li>
+                                    </ul>
+                                </form>
+                            </div>
+                        </nav>";
+                }
+        ?>
 
         
         <div class="container">
             <div class="container-keranjang">
-                <form action="" method="post">
+                <form action="prosesOrder.php" method="get">
                         <table class="pembayaran" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td colspan="4"><h3>Keranjang Belanja</h3></td>
@@ -74,35 +115,37 @@
                                 <td>Jumlah</td>
                                 <td>Aksi</td>
                             </tr>
+                            <?php $total = 0;?>
                             <?php foreach ($hasil as $row) :  ?>
+                                <?php $total += $row ['harga_produk.order'];?>
                                 <tr>
                                     <td class="img">
                                         <img src='<?php echo $location ?><?php echo $row['gambar_produk.order']?>' alt=''>
                                         <p><?php echo $row['nama_produk.order'] ?></p>
                                     </td>
                                     <td>
-                                        <h3><?php echo $row['harga_produk.order'] ?></h3>
+                                        <h3><?php echo number_format($row['harga_produk.order']) ?></h3>
                                     </td>
                                     <td>
                                         <input type="text" name="ker_jumlah">
                                     </td>
                                     <td>
-                                        <a href="" class="hapus-item">Hapus</a>
+                                        <a href="hapusOrder.php?id_order=<?php echo $row['id_order']?>" class="hapus-item">Hapus</a>
                                     </td>
                                 </tr>
                             <?php endforeach;?>
-                           
+                           <?php $kirim = 10000?>
                             <tr class="total-pembayaran">
                                 <td colspan="3">Subtotal untuk produk</td>
-                                <td >Rp.135.000</td> 
+                                <td >Rp. <?php echo number_format($total)?></td> 
                             </tr>
                             <tr class="total-pembayaran">
                                 <td colspan="3">Subtotal untuk pengiriman</td>
-                                <td >Rp.135.000</td> 
+                                <td >Rp. <?php echo number_format($kirim)?></td> 
                             </tr>
                             <tr class="hasil-total">
                                 <td colspan="3"><h2>Total pembayaran</h2></td>
-                                <td ><h3>145.000</h3></td> 
+                                <td ><h3>Rp. <?php echo number_format($total+$kirim)?></h3></td> 
                             </tr>
                         </table>
 
@@ -117,17 +160,32 @@
                             </tr>
                             <tr>
                                 <td colspan="3">
-                                    <input type="text" class="alamat-byr" id="alamat" placeholder="Masukan Alamat" autocomplete="off">
+                                    <input type="text" name="alamat_pembeli" class="alamat-byr" id="alamat" placeholder="Masukan Alamat" autocomplete="off">
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="3">
-                                    <label for="diskon">Alamat Pembayaran</label>
+                                    <label for="diskon">Vocher Pembayaran</label>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="3">
-                                    <input type="text" class="alamat-byr" id="diskon" placeholder="Masukan Kode Vocher" autocomplete="off">
+                                    <input type="text" name="vocher_diskon" class="alamat-byr" id="diskon" placeholder="Masukan Kode Vocher" autocomplete="off">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <p>Opsi Pembayaran</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <input type="radio" name="opsi_pembayaran" id="BSI" value="BSI">
+                                    <label for="BSI">BSI</label>
+                                    <input type="radio" name="opsi_pembayaran" id="BNI" value="BNI">
+                                    <label for="BNI">BNI</label>
+                                    <input type="radio" name="opsi_pembayaran" id="BRI" value="BRI">
+                                    <label for="BRI">BRI</label>
                                 </td>
                             </tr>
                             <tr>
@@ -136,35 +194,17 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><input type="radio" name="" id="opsi-pengiriman">
-                                    <label for="opsi-pengiriman">JNT</label>
-                                </td>
-                                <td><input type="radio" name="" id="opsi-pengiriman">
-                                    <label for="opsi-pengiriman">JNT</label>
-                                </td>
-                                <td><input type="radio" name="" id="opsi-pengiriman">
-                                    <label for="opsi-pengiriman">JNT</label>
+                                <td colspan="3"><input type="radio" name="opsi_pengiriman" id="JNE" value="JNE">
+                                    <label for="JNE">JNE</label>
+                                    <input type="radio" name="opsi_pengiriman" id="JNT" value="JNT">
+                                    <label for="JNT">JNT</label>
+                                    <input type="radio" name="opsi_pengiriman" id="EXPRES" value="EXPRES">
+                                    <label for="EXPRES">EXPRES</label>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="3">
-                                    <p>Opsi Pengiriman</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><input type="radio" name="" id="opsi-pengiriman">
-                                    <label for="opsi-pengiriman">JNT</label>
-                                </td>
-                                <td><input type="radio" name="" id="opsi-pengiriman">
-                                    <label for="opsi-pengiriman">JNT</label>
-                                </td>
-                                <td><input type="radio" name="" id="opsi-pengiriman">
-                                    <label for="opsi-pengiriman">JNT</label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="3">
-                                    <button type="submit"> <a href="" class="btn-pesan">Buat Pesanan</a></button>
+                                    <button type="submit"> <a href="prosesOrder.php" class="btn-pesan">Buat Pesanan</a></button>
                                 </td>
                             </tr>
                             

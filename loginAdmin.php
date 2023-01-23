@@ -1,9 +1,34 @@
 <?php
     session_start();
-    include 'crudProduk.php';
-    require_once 'koneksi.php';
-    $koneksi = koneksiProduk();
-    error_reporting(0);
+    // include('sesion.php');
+    include('koneksi.php');
+
+?>
+<?php
+
+include 'crudProduk.php';
+require_once 'koneksi.php';
+$koneksi = koneksiProduk();
+error_reporting(0);
+
+// if (isset($_SESSION['username'])) {
+//     header("Location: register.php");
+// }
+
+if (isset($_POST['submit'])) {
+	$email = $_POST['email'];
+	$password = md5($_POST['password']);
+
+	$sql = "SELECT * FROM tb_register WHERE email='$email' AND password='$password'";
+	$result = mysqli_query($conn, $sql);
+	if ($result->num_rows > 0) {
+		$row = mysqli_fetch_assoc($result);
+		$_SESSION['username'] = $row['username'];
+		header("Location: welcome.php");
+	} else {
+		echo "<script>alert('Woops! Email Atau Password anda Salah.')</script>";
+	}
+}
 
 ?>
 
@@ -26,61 +51,32 @@
 </head>
 <body>
     <div class="container-fluid">
-        <?php
-            if(isset($_SESSION['username'])){
-                $aa = $_SESSION['username'];
-                    echo "<nav>
-                        <div class='cont-nav'>
-                            <form action='cariProduk.php' method='post'>
-                                <a href='index.php' class='logo'><h2>Freshly Dropped</h2></a>
-                                <ul class='menu'>
-                                    <li><input type='teks' name='nama_produk' autocomplete='0ff'></li>
-                                    <li><button type='submit'><span class='material-symbols-outlined'>
-                                        search
-                                        </span></button>
-                                    </li>
-                                    <li>
-                                    <a href='cardKeranjang.php'> <span class='material-symbols-outlined card-shop'>
-                                        shopping_cart
-                                        </span></a>
-                                    </li>
-                                    <li class='img-profile'>
-                                    <img src='Images/Beras.png' alt=''>
-                                    </li>
-                                    <li>
-                                        <h3>$aa</h3>
-                                    </li>
-                                </ul>
-                            </form>
-                        </div>
-                    </nav>";
-                }else{
-                    echo "<nav>
-                            <div class='cont-nav'>
-                                <form action='cariProduk.php' method='post'>
-                                    <a href='index.php' class='logo'><h2>Freshly Dropped</h2></a>
-                                    <ul class='menu'>
-                                        <li><input type='teks' name='nama_produk' autocomplete='0ff'></li>
-                                        <li><button type='submit'><span class='material-symbols-outlined'>
-                                            search
-                                            </span></button>
-                                        </li>
-                                        <li>
-                                        <a href='cardKeranjang.php'> <span class='material-symbols-outlined card-shop'>
-                                            shopping_cart
-                                            </span></a>
-                                        </li>
-                                        <li>
-                                            <a href='register.php' class='daftar'>Daftar</a>
-                                            <a href='login.php' class='masuk'>Masuk</a>
-                                        </li>
-                                    </ul>
-                                </form>
-                            </div>
-                        </nav>";
-                }
-        ?>
-        
+        <nav>
+            <div class="cont-nav">
+                <form action="">
+                    <a href="index.html" class="logo"><h2>Freshly Dropped</h2></a>
+                    <ul class="menu">
+                        <li><input type="teks"  autocomplete="0ff"></li>
+                        <li><button type="submit"><span class="material-symbols-outlined">
+                            search
+                            </span></button>
+                        </li>
+                        <li>
+                           <a href=""> <span class="material-symbols-outlined card-shop">
+                            shopping_cart
+                            </span></a>
+                        </li>
+                        <li class="img-profile">
+                            <img src="Images/Beras.png" alt="">
+                        </li>
+                        <li>
+                            <h3>Admin</h3>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </nav>
+
         <!-- hero -->
         <div class="container">
             <div class="hero">
