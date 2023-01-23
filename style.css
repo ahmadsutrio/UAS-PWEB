@@ -1,0 +1,484 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    color: Black;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+}
+.container-fluid{
+    width: 100%;
+}
+.cont-nav,
+.card-buy{
+    margin:0 auto;
+}
+.container,
+.container-kategori,
+.container-rekomendasi{
+    margin:0 166px;
+}
+nav{
+    background: #FFFFFF;
+    box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.07), 0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198);
+    height: 82px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position:fixed;
+    width: 100%;
+    top: 0;
+    z-index: 99;
+}
+
+.cont-nav form,
+.cont-nav form .menu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cont-nav form .logo{
+    display: block;
+    margin-right: 80px;
+    font-size: 15px;
+    margin-right: 110px;
+}
+.cont-nav form .menu input{
+    width: 500px;
+    font-size: 20px;
+    height: 38px;
+}
+.cont-nav form .menu button{
+    width: 48px;
+    height: 38px;
+}
+.cont-nav form .menu li .card-shop{
+    margin-left: 19px;
+}
+.cont-nav form .menu li .daftar,
+.cont-nav form .menu li .masuk{
+    display: inline-block;
+    border: 1px solid;
+    padding: 8px 25px ;
+    margin-left: 7px;
+}
+.cont-nav form .menu li .daftar{
+    letter-spacing: -0.019em;
+    color: #86DD48;
+    border: 1px solid #70BC3A;
+    border-radius: 5px;
+    margin-left: 40px;
+}
+.cont-nav form .menu li .masuk{
+    background: #70BC3A;
+    border-radius: 5px;
+    color: white;
+    border: 1px solid #70BC3A;
+}
+
+
+.hero{
+    margin-top: 85px;
+    display: flex;
+    /* border: 1px solid; */
+    justify-content: space-between;
+}
+.container .hero .tagline{
+    margin-left: 70px;
+}
+.container .hero .tagline .buy-now{
+    display:flex ;
+    cursor: pointer;
+    line-height: 58px;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 57px;
+    background: #70BC3A;
+    border-radius: 5px; 
+    border: none;
+    margin-top: 27px;
+}
+.container .hero .tagline .buy-now a{
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+}
+.container .hero .tagline h2{
+    font-weight: 700;
+    font-size: 42px;
+    margin-bottom: 10px;
+    margin-top: 241px;
+}
+
+.container .hero .tagline p{
+    width: 450px;
+    display: flex;
+    flex-wrap: wrap;
+    /* border: 1px solid; */
+    font-weight: 400;
+    font-size: 16px;
+}
+.container .hero .hero-image img{
+    width: 618px;
+    height: 661px;
+}
+.container .hero .tagline .buy-now .navigat{
+    color: white;
+    font-weight: 700;
+}
+.container-kategori,
+.container-rekomendasi{
+    padding: 28px;
+    /* border: 1px solid; */
+    border-radius: 10px;
+}
+.container-kategori{
+    background: rgba(161, 196, 137, 0.28);
+}
+.container-kategori h2,
+.container-rekomendasi h2{
+    text-align: center;
+    font-weight: 600;
+    font-size: 30px;
+    margin:20px 0 43px 0;
+}
+.container-kategori .container-card,
+.container-rekomendasi .container-card{
+    display: flex;
+    width: 995px;
+    flex-wrap: wrap;
+    margin: auto;
+}
+.container-kategori .container-card .card-body,
+.container-rekomendasi .container-card .card-body{
+    display: flex;
+    width: 232px;
+    /* height: 299px; */
+    background: #FFFFFF;
+    padding: 10px;
+    margin:0 16px 16px 0;
+    transition: 0.3S;
+    flex-direction: column;
+    border: 1px solid rgba(218, 213, 213, 1);
+    border-radius: 5px;
+}
+.container-kategori .container-card .card-body:hover,
+.container-rekomendasi .container-card .card-body:hover{
+    filter: drop-shadow(0px 100px 80px rgba(0, 0, 0, 0.07)) drop-shadow(0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198)) drop-shadow(0px 22.3363px 17.869px rgba(0, 0, 0, 0.0417275)) drop-shadow(0px 12.5216px 10.0172px rgba(0, 0, 0, 0.035)) drop-shadow(0px 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725)) drop-shadow(0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802));
+}
+.container-kategori .container-card .card-body img,
+.container-rekomendasi .container-card .card-body img{
+    display: block;
+    width: 210px;
+    height: 210px;
+    border-radius: 3px;
+}
+.container-kategori .container-card .card-body h4,
+.container-rekomendasi .container-card .card-body h4{
+    font-weight: 600;
+    font-size: 23px;
+    text-align: center;
+    margin:20px 0 23px 0;
+}
+
+/* footer */
+footer{
+    width: 100%;
+    background: #7A9D60;
+    padding: 38px 100px;
+}
+footer .container-footer{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+footer .tentang-follow .tentang h4,
+footer .tentang-follow .follow h4,
+footer .layanan h4,
+footer .bantuan h4,
+footer .saran h4
+{
+    font-weight: 600;
+    font-size: 23px;
+    color: white;
+    text-align: center;
+}
+footer .tentang-follow .tentang p,
+footer .bantuan a p{
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: -0.019em;
+    color: #EAFBE0;
+    margin-top: 21px;
+}
+footer .tentang-follow{
+    width: 322px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+footer .tentang-follow .tentang,
+footer .tentang-follow .follow{
+    margin-bottom: 25px;
+}
+footer .tentang-follow .follow .follow-icon{
+    display: flex;
+    width: 322px;
+    align-items: center;
+    justify-content: center;
+}
+footer .tentang-follow .follow a{
+    display: block;
+    margin-right: 23px;
+}
+footer .tentang-follow .follow a i{
+    color: #EAFBE0;
+    font-size: 40px;
+}
+footer .layanan{
+    width: 200px;
+    /* border: 1px solid; */
+}
+
+footer .layanan h3{
+    font-weight: 400;
+    font-size: 20px;
+    color: white;
+    margin-top: 21px;
+}
+footer .saran{
+    width: 268px;
+    display: flex;
+    flex-direction: column;
+}
+footer .saran form{
+    margin-top: 21px;
+}
+footer .saran form label{
+    display: block;
+    border-radius: 5px;
+    border: none;
+    color: white;
+}
+footer .saran form input{
+    width: 213px;
+    border-radius: 5px;
+    border: none;
+}
+footer .saran form button{
+    width: 213px;
+    border: none;
+    cursor: pointer;
+    padding: 5px 0;
+    background: #516A3E;
+    border-radius: 5px;
+    color: white;
+}
+.copyright{
+    width: 100%;
+    background-color: #587E3D;
+    padding: 20px;
+    text-align: center;
+}
+.copyright p{
+    font-weight: 500;
+    font-size: 18px;
+    color: white;
+}
+
+
+
+/* daftar-produk */
+
+.content,
+.container-keranjang{
+    margin: 100px auto;
+}
+
+.content .container-content {
+    display: flex;
+    text-align: center;
+    width: 1058px;
+    flex-wrap: wrap;
+    margin: auto;
+    padding: 100px 0 0 0;
+}
+.content .container-content .container-card{
+    width: 200px;
+    border: 1px solid;
+    padding: 8px;
+    margin: 0 11px 11px 0;
+    display: block;
+}
+.content .container-content .container-card img{
+    display: block;
+    width: 184px;
+    height: 170px;
+    margin-bottom: 11px;
+}
+.content .container-content p{
+    font-weight: 400;
+    font-size: 20px;
+}
+.content .container-content h3{
+    margin:8px 0;
+    font-weight: 600;
+    font-size: 22px;
+}
+
+/* cardbuy */
+
+.card-buy{
+    margin-top: 150px;
+    width: 900px;
+    background: #FFFFFF;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    padding: 20px;
+}
+.card-buy img{
+    display: block;
+    width: 400px;
+    height: 320px;
+}
+.card-buy .desc{
+    margin-left: 15px;
+    width: 450px;
+}
+.card-buy .desc h2{
+    font-weight: 600;
+    font-size: 38px;
+    margin-top: 20px;
+}
+.card-buy .desc .jual{
+    font-weight: 400;
+    font-size: 25px;
+}
+.card-buy .desc .harga{
+    font-weight: 600;
+    font-size: 50px;
+    color: #70BC3A;
+    margin-top: 15px;
+}
+.card-buy .desc .container-btn{
+    margin-top: 30px;
+    display: flex;
+}
+.card-buy .desc .container-btn .btn-keranjang{
+    width: 200px;
+    padding: 15px;
+    background: rgba(112, 188, 58, 0.15);
+    border: 1px solid #70BC3A;
+    margin-right: 20px;
+    color: #70BC3A;
+    text-align: center;
+}
+.card-buy .desc .container-btn .btn-keranjang button{
+    border: none;
+    color: #70BC3A;
+}
+.card-buy .desc .container-btn .btn-beli{
+    width: 200px;
+    display: block;
+    padding: 15px;
+    background: #70BC3A;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* keranjang */
+.container-keranjang form {
+    display: flex;
+}
+.container-keranjang form .pembayaran{
+    padding: 10px;
+    width: 750px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.container-keranjang form table tr td h3{
+    font-weight: 700;
+    font-size: 23px;
+}
+.container-keranjang form table .title-kr td{
+    border-bottom: 1px solid  #D9D9D9;
+    font-weight: 400;
+    font-size: 18px;
+}
+.container-keranjang form{
+    display: flex;
+}
+.container-keranjang form table tr .img{
+    display: flex;
+    align-items: center;
+}
+.container-keranjang form tr .img img{
+    width: 100px;
+    height: 70px;
+    margin-right: 20px;
+}
+
+.container-keranjang form table tr td{
+    padding: 10px 30px;
+}
+
+.container-keranjang form table tr td input{
+    width: 40px;
+    height: 30px;
+    font-size: 20px;
+    text-align: center;
+}
+.container-keranjang form table tr td .hapus-item{
+    display: block;
+    padding: 10px;
+    background-color: rgb(230, 75, 75);
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+}
+.container-keranjang form table .hasil-total{
+    background: #D9D9D9;
+    color: rgba(203, 61, 61, 1);
+}
+.container-keranjang form table .hasil-total h3{
+    color: rgba(203, 61, 61, 1);
+}
+
+.info-pembayaran{
+    width: 150px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.info-pembayaran tr td{
+    height: 10px;
+}
+.info-pembayaran tr td input[type="radio"]{
+    transform: scale(0.8);
+}
+.info-pembayaran tr td .alamat-byr{
+    width: 299px;
+    height: 39px;
+    border: none;
+    font-weight: 400;
+    font-size: 18px;
+    border-bottom: 1px solid #D9D9D9;
+}
+.info-pembayaran tr td button .btn-pesan{
+    display: block;
+    height: 60px;
+    line-height: 61px;
+    width: 100%;
+    font-size: 22px;
+    color: white;
+}
+.info-pembayaran tr td button{
+    width: 100%;
+    border: 1px solid #70BC3A;
+    background: #70BC3A;
+    border-radius: 5px;
+}
